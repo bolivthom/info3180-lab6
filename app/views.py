@@ -14,7 +14,7 @@ from flask import render_template, request, redirect, url_for, flash
 ###
 
 @app.route('/')
-def index():
+def index(error=None):
     """Render the initial webpage and then let VueJS take control."""
     return app.send_static_file('index.html')
 
@@ -45,7 +45,7 @@ def add_header(response):
 @app.errorhandler(404)
 def page_not_found(error):
     """Custom 404 page."""
-    return render_template('404.html'), 404
+    return app.send_static_file('index.html')
 
 
 if __name__ == '__main__':
